@@ -1,17 +1,19 @@
 import { getAllIdeas } from "@/lib/data";
-import IdeaCard from "../shared/IdeaCard";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
-const TrendingIdeas = async () => {
+
+import IdeaCard from "@/components/shared/IdeaCard";
+import Image from "next/image";
+import IdesElementImg from "@/assets/idea.png";
+
+
+const IdeasPage = async () => {
   const ideas = await getAllIdeas();
-
   return (
     <div
       className="
         relative
         overflow-hidden
-        py-24
+        py-17
         bg-[#f5f3ff]
         dark:bg-[#070B14]
         transition-colors
@@ -24,42 +26,57 @@ const TrendingIdeas = async () => {
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-200/30 dark:bg-indigo-500/10 blur-[120px]" />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-       
         {/* Header */}
-        <div className="mb-20 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mb-10 flex flex-col items-start  gap-10 md:flex-row lg:items-center lg:justify-between">
           <div>
             {/* Label */}
             <div className="mb-5 flex items-center gap-2">
               <div className="h-2 w-2 rounded-full bg-[#7C5CFF]" />
 
               <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#7C5CFF]">
-                Trending
+                Ideas
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="max-w-3xl text-[56px] font-black leading-[1.05] tracking-[-0.04em] text-[#0F172A] dark:text-white">
-              Trending Ideas
+              Explore Ideas
             </h2>
 
             {/* Description */}
             <p className="mt-6 max-w-xl text-[19px] leading-[2rem] text-[#6B7280] dark:text-[#A1A1B5]">
-              Explore the most popular and impactful ideas from our community.
+              Discover, explore, and collaborate on
+              <br />
+              innovative ideas shared by the community.
             </p>
           </div>
 
-          {/* CTA Button */}
-          <Link href={"/ideas"}>
-            <button className="group flex h-[64px] items-center gap-3 rounded-full border border-[#E7DFFF] bg-white px-9 text-[16px] font-semibold text-[#7C5CFF] shadow-[0_4px_20px_rgba(124,92,255,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(124,92,255,0.12)] dark:border-[#2A2A40] dark:bg-[#1C1C2E]">
-              View All Ideas
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          </Link>
+          {/*  Image */}
+          <div className="relative flex items-center justify-center">
+            {/* Soft Glow */}
+            <div className="absolute h-[180px] w-[180px] rounded-full bg-[#8B5CF6]/15 blur-3xl" />
+
+            <Image
+              src={IdesElementImg}
+              width={400}
+              height={100}
+              alt="Element"
+              className="
+                relative z-10
+                object-contain
+                drop-shadow-[0_10px_30px_rgba(124,92,255,0.18)]
+                "
+              priority
+            />
+          </div>
         </div>
+
+        
+       
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {ideas?.slice(0, 6).map((idea) => (
+          {ideas?.map((idea) => (
             <IdeaCard key={idea._id} idea={idea} />
           ))}
         </div>
@@ -68,4 +85,4 @@ const TrendingIdeas = async () => {
   );
 };
 
-export default TrendingIdeas;
+export default IdeasPage;
