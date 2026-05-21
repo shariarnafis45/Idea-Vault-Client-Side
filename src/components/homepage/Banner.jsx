@@ -25,7 +25,7 @@ const Banner = () => {
     },
   ];
   return (
-    <div className="  py-3 px-5">
+    <div className="  py-5 px-5">
       <Swiper
         pagination={{
           dynamicBullets: true,
