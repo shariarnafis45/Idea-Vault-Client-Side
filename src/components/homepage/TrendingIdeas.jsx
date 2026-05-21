@@ -7,7 +7,7 @@ const TrendingIdeas = async () => {
   const ideas = await getAllIdeas();
 
   return (
-    <section
+    <div
       className="
         relative
         overflow-hidden
@@ -26,7 +26,7 @@ const TrendingIdeas = async () => {
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         {/* HEADER */}
         {/* Header */}
-        <div className="mb-20 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+        <div className="mb-20 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div>
             {/* Label */}
             <div className="mb-5 flex items-center gap-2">
@@ -64,7 +64,7 @@ const TrendingIdeas = async () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import Banner from '@/components/homepage/Banner';
+import CtaSection from '@/components/homepage/CtaSection';
 import HowItWorksSection from '@/components/homepage/HowItWorksSection';
 import IdeaCategoriesSection from '@/components/homepage/IdeaCategoriesSection';
 import TrendingIdeas from '@/components/homepage/TrendingIdeas';
@@ -11,6 +12,7 @@ const HomePage = () => {
         <TrendingIdeas/>
         <HowItWorksSection/>
         <IdeaCategoriesSection/>
+        <CtaSection/>
         
         </>
     );

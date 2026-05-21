@@ -25,9 +25,9 @@ const steps = [
   },
 ];
 
-export default function HowItWorksSection() {
+const HowItWorksSection = () => {
   return (
-    <section className="relative overflow-hidden bg-[#F7F5FF] py-28 dark:bg-[#0F0F1A]">
+    <div className="relative overflow-hidden bg-[#F7F5FF] py-28 dark:bg-[#0F0F1A]">
       {/* Background Glow */}
       <div className="absolute left-0 top-40 h-72 w-72 rounded-full bg-purple-300/20 blur-3xl dark:bg-purple-500/10" />
 
@@ -133,7 +133,7 @@ export default function HowItWorksSection() {
 
         {/* Button */}
         <div className="mt-20 flex justify-center">
-          <Link href={'/add-ideas'}>
+          <Link href={"/add-ideas"}>
             <button className="group flex h-16 items-center gap-4 rounded-full bg-gradient-to-r from-[#7C5CFF] to-[#8B5CFF] px-10 text-lg font-semibold text-white shadow-[0_10px_40px_rgba(124,92,255,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_60px_rgba(124,92,255,0.45)]">
               Share Your Idea
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -141,6 +141,8 @@ export default function HowItWorksSection() {
           </Link>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default HowItWorksSection;

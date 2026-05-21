@@ -3,16 +3,16 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function IdeaCategoriesSection() {
+const IdeaCategoriesSection = async () => {
   const categories = await getIdeaCategories();
   return (
-    <section className="relative overflow-hidden bg-[#F7F5FF] py-28 dark:bg-[#0F0F1A]">
+    <div className="relative overflow-hidden bg-[#F7F5FF] py-28 dark:bg-[#0F0F1A]">
       {/* Background Glow */}
       <div className="absolute right-0 top-40 h-[320px] w-[320px] rounded-full bg-purple-300/10 blur-3xl dark:bg-purple-500/10" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-20 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+        <div className="mb-20 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div>
             {/* Label */}
             <div className="mb-5 flex items-center gap-2">
@@ -36,7 +36,7 @@ export default async function IdeaCategoriesSection() {
           </div>
 
           {/* CTA Button */}
-          <Link href={"/ideas"}>
+          <Link href={"/ideas"} className="">
             <button className="group flex h-[64px] items-center gap-3 rounded-full border border-[#E7DFFF] bg-white px-9 text-[16px] font-semibold text-[#7C5CFF] shadow-[0_4px_20px_rgba(124,92,255,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(124,92,255,0.12)] dark:border-[#2A2A40] dark:bg-[#1C1C2E]">
               View All Categories
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -62,20 +62,19 @@ export default async function IdeaCategoriesSection() {
                 {/* Icon Box */}
                 <div
                   className="
-    relative mb-10
-    flex h-[88px] w-[88px] items-center justify-center
-    rounded-[28px]
-    border border-[#ECE7FF]
-    bg-gradient-to-br from-white to-[#F6F1FF]
-    shadow-[0_10px_30px_rgba(124,92,255,0.08)]
-    transition-all duration-300
-    group-hover:scale-105
-    group-hover:shadow-[0_16px_40px_rgba(124,92,255,0.16)]
+                    relative mb-10
+                    flex h-[88px] w-[88px] items-center justify-center
+                    rounded-[28px]
+                    border border-[#ECE7FF]
+                    bg-gradient-to-br from-white to-[#F6F1FF]
+                    shadow-[0_10px_30px_rgba(124,92,255,0.08)]
+                    transition-all duration-300
+                    group-hover:scale-105
+                    group-hover:shadow-[0_16px_40px_rgba(124,92,255,0.16)]
 
-    dark:border-[#2E2E45]
-    dark:from-[#232338]
-    dark:to-[#1A1A2B]
-  "
+                    dark:border-[#2E2E45]
+                    dark:from-[#232338]
+                    dark:to-[#1A1A2B] "
                 >
                   {/* Glow Effect */}
                   <div
@@ -106,7 +105,7 @@ export default async function IdeaCategoriesSection() {
                 {/* Content */}
                 <div className="relative">
                   {/* Title */}
-                  <h3 className="max-w-[220px] text-[32px] font-black leading-[1.15] tracking-[-0.04em] text-[#111827] dark:text-white">
+                  <h3 className="max-w-[220px] text-2xl font-bold leading-[1.15] tracking-[-0.04em] text-[#111827] dark:text-white">
                     {category.title}
                   </h3>
 
@@ -127,6 +126,8 @@ export default async function IdeaCategoriesSection() {
           })}
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default IdeaCategoriesSection;
