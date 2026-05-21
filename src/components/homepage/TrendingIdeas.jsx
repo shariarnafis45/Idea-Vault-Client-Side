@@ -1,6 +1,7 @@
 import { getAllIdeas } from "@/lib/data";
 import IdeaCard from "../shared/IdeaCard";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const TrendingIdeas = async () => {
   const ideas = await getAllIdeas();
@@ -24,85 +25,34 @@ const TrendingIdeas = async () => {
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         {/* HEADER */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between  gap-8 mb-16">
+        {/* Header */}
+        <div className="mb-20 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            {/* top badge */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-2 h-2 rounded-full bg-violet-500" />
+            {/* Label */}
+            <div className="mb-5 flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-[#7C5CFF]" />
 
-              <span
-                className="
-                  text-sm
-                  uppercase
-                  tracking-[0.22em]
-                  font-semibold
-                  text-violet-600
-                  dark:text-violet-400
-                "
-              >
+              <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#7C5CFF]">
                 Trending
               </span>
             </div>
 
-            {/* title */}
-            <h2
-              className="
-                text-[42px]
-                md:text-[64px]
-                leading-[1]
-                font-black
-                tracking-[-2px]
-                text-[#0B1023]
-                dark:text-white
-              "
-            >
+            {/* Heading */}
+            <h2 className="max-w-3xl text-[56px] font-black leading-[1.05] tracking-[-0.04em] text-[#0F172A] dark:text-white">
               Trending Ideas
             </h2>
 
-            {/* description */}
-            <p
-              className="
-                mt-3
-                max-w-2xl
-                text-[18px]
-                leading-[1.7]
-                text-[#667085]
-                dark:text-gray-400
-                font-medium
-              "
-            >
+            {/* Description */}
+            <p className="mt-6 max-w-xl text-[19px] leading-[2rem] text-[#6B7280] dark:text-[#A1A1B5]">
               Explore the most popular and impactful ideas from our community.
             </p>
           </div>
 
-          {/* Button */}
+          {/* CTA Button */}
           <Link href={"/ideas"}>
-            <button
-              className="
-                group
-                h-[62px]
-                px-8
-                rounded-full
-                border
-                border-violet-200
-                dark:border-violet-500/20
-                bg-white/80
-                dark:bg-white/5
-                backdrop-blur-xl
-                text-[#7C3AED]
-                dark:text-violet-300
-                text-[16px]
-                font-semibold
-                shadow-[0_8px_30px_rgba(124,58,237,0.08)]
-                transition-all
-                duration-300
-                hover:bg-[#7C3AED]
-                hover:border-[#7C3AED]
-                hover:text-white
-                hover:shadow-[0_12px_40px_rgba(124,58,237,0.20)]
-                "
-            >
+            <button className="group flex h-[64px] items-center gap-3 rounded-full border border-[#E7DFFF] bg-white px-9 text-[16px] font-semibold text-[#7C5CFF] shadow-[0_4px_20px_rgba(124,92,255,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(124,92,255,0.12)] dark:border-[#2A2A40] dark:bg-[#1C1C2E]">
               View All Ideas
+              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </Link>
         </div>
