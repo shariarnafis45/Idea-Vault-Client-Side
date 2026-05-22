@@ -16,10 +16,32 @@ import {
   ListBox,
 } from "@heroui/react";
 import { Send } from "lucide-react";
+import { redirect } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 export function AddIdeaForm({ categories }) {
-  const onSubmit = (e) => {};
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const newIdea = Object.fromEntries(formData.entries());
+    newIdea.tags = newIdea.tags.split(",").map((tag) => tag.trim());
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-idea`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newIdea),
+    });
+    const data = await res.json();
+    if (data.acknowledged) {
+      toast.success(`Your ${newIdea.ideaTitle} Idea Added Successfully`);
+      redirect('/ideas')
+    }
+    {
+      toast.error("Idea not added ! Please try again ");
+    }
+  };
 
   return (
     <Form onSubmit={onSubmit}>
@@ -28,7 +50,7 @@ export function AddIdeaForm({ categories }) {
           {/* title */}
           <TextField
             isRequired
-            name="title"
+            name="ideaTitle"
             validate={(value) => {
               if (value.length < 3) {
                 return "Name must be at least 3 characters";
@@ -161,78 +183,66 @@ export function AddIdeaForm({ categories }) {
                 "
             />
           </TextField>
-          {/* Long des */}
-          <TextField
-            isRequired
-            name="longDescription"
-            validate={(value) => {
-              if (value.length < 20) {
-                return "Name must be at least 20 characters";
-              }
 
-              return null;
-            }}
-            className="group"
-          >
-            <Label
+          {/* Long Description */}
+
+          <div className="w-full">
+            <label
               className="
-              
       mb-2 block
       text-sm font-semibold
       text-[#111827] dark:text-gray-200
     "
             >
-              Long Description
-            </Label>
+              Detailed Description
+            </label>
 
-            <Input
+            <textarea
+              name="detailedDescription"
+              required
+              rows={6}
               placeholder="Describe your idea in detail. What problem does it solve? How will it work? What makes it unique?"
-              variant="secondary"
               className="
-               w-full
-                    h-50 rounded-2xl
-                    border border-black/5 dark:border-white/10
-                    
-                    bg-gray-100 dark:bg-[#111827]/70
-                    
-                    px-4
-                    
-                    text-[15px]
-                    text-gray-800 dark:text-gray-100
-                    
-                    placeholder:text-gray-400 dark:placeholder:text-gray-500
-                    
-                    shadow-[0_4px_20px_rgba(15,23,42,0.04)]
-                    dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]
-                    
-                    backdrop-blur-xl
-                    
-                    transition-all duration-300
-                    
-                    hover:border-[#6D5EF5]/30
-                    hover:shadow-[0_10px_30px_rgba(109,94,245,0.08)]
-                    
-                    focus-within:border-[#6D5EF5]
-                    focus-within:ring-4
-                    focus-within:ring-[#6D5EF5]/10
-                    
-                    dark:hover:border-[#8B5CF6]/40
-                    dark:focus-within:border-[#8B5CF6]
-                    dark:focus-within:ring-[#8B5CF6]/10
-                    "
+      w-full
+      rounded-2xl
+      border border-black/5 dark:border-white/10
+      
+      bg-gray-100 dark:bg-[#111827]/70
+      
+      px-4 py-4
+      
+      text-[15px]
+      text-gray-800 dark:text-gray-100
+      
+      placeholder:text-gray-400 dark:placeholder:text-gray-500
+      
+      shadow-[0_4px_20px_rgba(15,23,42,0.04)]
+      dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+      
+      backdrop-blur-xl
+      
+      transition-all duration-300
+      
+      hover:border-[#6D5EF5]/30
+      hover:shadow-[0_10px_30px_rgba(109,94,245,0.08)]
+      
+      focus:border-[#6D5EF5]
+      focus:ring-4
+      focus:ring-[#6D5EF5]/10
+      focus:outline-none
+      
+      dark:hover:border-[#8B5CF6]/40
+      dark:focus:border-[#8B5CF6]
+      dark:focus:ring-[#8B5CF6]/10
+      
+      resize-none
+    "
             />
-
-            <FieldError
-              className="
-                mt-2 text-sm
-                text-red-500 dark:text-red-400
-                "
-            />
-          </TextField>
-
+          </div>
           {/* Category Dropdown */}
           <Select
             isRequired
+            name="category"
             className="w-full "
             placeholder="Select A Category"
           >
@@ -386,15 +396,15 @@ export function AddIdeaForm({ categories }) {
           {/* Image Url */}
           <TextField
             isRequired
-            name="image"
+            name="imageURL"
             className="group"
             validate={(value) => {
               if (!value) return null;
 
-              const imageRegex = /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/i;
+              const urlRegex = /^https?:\/\/.+/i;
 
-              if (!imageRegex.test(value)) {
-                return "Please enter a valid image URL";
+              if (!urlRegex.test(value)) {
+                return "Please enter a valid URL";
               }
 
               return null;
@@ -456,7 +466,7 @@ export function AddIdeaForm({ categories }) {
             />
           </TextField>
           {/* Budget */}
-          <TextField name="budget" className="group">
+          <TextField name="estimatedBudget" className="group">
             <Label
               className="
       mb-2 block
@@ -468,7 +478,7 @@ export function AddIdeaForm({ categories }) {
             </Label>
 
             <Input
-              placeholder="Enter estimated budget range (1000$ - 10000$)"
+              placeholder="Enter estimated budget $10000"
               variant="secondary"
               className="
               w-full
@@ -513,7 +523,7 @@ export function AddIdeaForm({ categories }) {
             />
           </TextField>
           {/* Target Audience */}
-          <TextField isRequired name="audience" className="group">
+          <TextField isRequired name="targetAudience" className="group">
             <Label
               className="
       mb-2 block
@@ -730,7 +740,6 @@ export function AddIdeaForm({ categories }) {
             <Send className="size-4" />
             Submit Idea
           </Button>
-          
         </Fieldset.Actions>
       </Fieldset>
     </Form>
