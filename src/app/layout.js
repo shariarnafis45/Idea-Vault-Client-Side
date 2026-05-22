@@ -4,8 +4,6 @@ import NavBar from "@/components/shared/NavBar";
 import ToggleThemeProvider from "@/providers/ToggleThemeProvider";
 import Footer from "@/components/shared/Footer";
 
-
-
 const inter = Inter({
   subsets: ["latin"],
 });

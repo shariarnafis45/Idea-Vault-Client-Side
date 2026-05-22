@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const IdeaCategoriesSection = async () => {
   const categories = await getIdeaCategories();
+  console.log(categories);
   return (
     <div className="relative overflow-hidden bg-[#F7F5FF] py-28 dark:bg-[#0F0F1A]">
       {/* Background Glow */}
@@ -47,7 +48,7 @@ const IdeaCategoriesSection = async () => {
         {/* Cards */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
           {categories.map((category, index) => {
-            const Icon = category.icon;
+          
 
             return (
               <div
