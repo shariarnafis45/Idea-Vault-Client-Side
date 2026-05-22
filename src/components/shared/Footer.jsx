@@ -257,7 +257,7 @@ const Footer = () => {
             <p className="text-sm text-slate-500 dark:text-[#aeb6d2]">
               © 2026{" "}
               <span className="font-semibold text-[#7c5cff]">IdeaVault</span>.
-              All rights reserved.
+              All rights reserved.Developed By <Link href={'/'} className="font-semibold text-[#7c5cff]">Nafis Shah</Link>
             </p>
 
             <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-[#aeb6d2]">

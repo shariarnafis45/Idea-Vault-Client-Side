@@ -133,7 +133,7 @@ const HowItWorksSection = () => {
 
         {/* Button */}
         <div className="mt-20 flex justify-center">
-          <Link href={"/add-ideas"}>
+          <Link href={"/add-idea"}>
             <button className="group flex h-16 items-center gap-4 rounded-full bg-gradient-to-r from-[#7C5CFF] to-[#8B5CFF] px-10 text-lg font-semibold text-white shadow-[0_10px_40px_rgba(124,92,255,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_60px_rgba(124,92,255,0.45)]">
               Share Your Idea
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

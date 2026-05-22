@@ -68,7 +68,7 @@ const AddIdeaPage = async () => {
         </div>
 
         {/* Form */}
-        <div className="bg-[#f6f3ff] dark:bg-[#050816] px-4 pb-10 pt-24 transition-colors duration-300 relative overflow-hidden rounded-[2rem] border border-black/5 dark:border-white/10 bg-white dark:bg-[#060B2D] px-6 py-14 shadow-[0_10px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_80px_rgba(2,6,23,0.45)] md:px-10 lg:px-14">
+        <div className="bg-[#f6f3ff] dark:bg-[#050816] px-4 pb-10 pt-13 transition-colors duration-300 relative overflow-hidden rounded-[2rem] border border-black/5 dark:border-white/10 bg-white dark:bg-[#060B2D] px-6 py-14 shadow-[0_10px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_80px_rgba(2,6,23,0.45)] md:px-10 lg:px-14">
           <AddIdeaForm categories={categories}/>
         </div>
       </div>

@@ -61,17 +61,18 @@ const CtaSection = () => {
 
               {/* Buttons */}
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link href={'/add-idea'}>
+                <Link href={"/add-idea"}>
                   <button className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#7c5cff] to-[#8b5cf6] px-7 py-4 text-white font-semibold shadow-[0_10px_35px_rgba(124,92,255,0.35)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_40px_rgba(124,92,255,0.45)]">
                     Share Your Idea
                     <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                 </Link>
-
-                <button className="group inline-flex items-center gap-3 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] px-7 py-4 text-slate-700 dark:text-white/90 backdrop-blur-xl transition-all duration-300 hover:bg-black/[0.04] dark:hover:bg-white/[0.06]">
-                  Explore Ideas
-                  <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
+                <Link href={"/ideas"}>
+                  <button className="group inline-flex items-center gap-3 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] px-7 py-4 text-slate-700 dark:text-white/90 backdrop-blur-xl transition-all duration-300 hover:bg-black/[0.04] dark:hover:bg-white/[0.06]">
+                    Explore Ideas
+                    <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
+                </Link>
               </div>
 
               {/* Stats */}

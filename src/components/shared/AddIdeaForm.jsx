@@ -36,7 +36,7 @@ export function AddIdeaForm({ categories }) {
     const data = await res.json();
     if (data.acknowledged) {
       toast.success(`Your ${newIdea.ideaTitle} Idea Added Successfully`);
-      redirect('/ideas')
+      redirect("/ideas");
     }
     {
       toast.error("Idea not added ! Please try again ");
@@ -185,9 +185,19 @@ export function AddIdeaForm({ categories }) {
           </TextField>
 
           {/* Long Description */}
+          <TextField
+            isRequired
+            name="detailedDescription"
+            validate={(value) => {
+              if (!value || value.length < 20) {
+                return "Description must be at least 20 characters";
+              }
 
-          <div className="w-full">
-            <label
+              return null;
+            }}
+            className="group"
+          >
+            <Label
               className="
       mb-2 block
       text-sm font-semibold
@@ -195,13 +205,11 @@ export function AddIdeaForm({ categories }) {
     "
             >
               Detailed Description
-            </label>
+            </Label>
 
-            <textarea
-              name="detailedDescription"
-              required
-              rows={6}
+            <TextArea
               placeholder="Describe your idea in detail. What problem does it solve? How will it work? What makes it unique?"
+              rows={5}
               className="
       w-full
       rounded-2xl
@@ -234,11 +242,20 @@ export function AddIdeaForm({ categories }) {
       dark:hover:border-[#8B5CF6]/40
       dark:focus:border-[#8B5CF6]
       dark:focus:ring-[#8B5CF6]/10
-      
+
       resize-none
     "
             />
-          </div>
+
+            <FieldError
+              className="
+      mt-2 text-sm
+      text-red-500 dark:text-red-400
+    "
+            />
+          </TextField>
+
+          
           {/* Category Dropdown */}
           <Select
             isRequired
