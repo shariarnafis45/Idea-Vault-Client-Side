@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -13,14 +14,30 @@ import {
 } from "@heroui/react";
 import { ArrowRight, Send } from "lucide-react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaEye } from "react-icons/fa";
 
 export function RegisterForm() {
-  const onSubmit = (e) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const newUser = Object.fromEntries(formData.entries());
-    console.log(newUser);
+    const { data, error } = await authClient.signUp.email({
+      name: newUser.name,
+      email: newUser.email,
+      password: newUser.password,
+      image: newUser.image,
+    });
+    if (data?.user) {
+      toast.success(`Register Successfully`);
+      router.push(redirect || '/');
+    } else if (error) {
+      toast.error(`${error.message}`);
+    }
   };
 
   return (

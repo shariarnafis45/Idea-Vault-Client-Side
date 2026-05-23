@@ -37,8 +37,7 @@ export function AddIdeaForm({ categories }) {
     if (data.acknowledged) {
       toast.success(`Your ${newIdea.ideaTitle} Idea Added Successfully`);
       redirect("/ideas");
-    }
-    {
+    } else {
       toast.error("Idea not added ! Please try again ");
     }
   };
@@ -255,7 +254,6 @@ export function AddIdeaForm({ categories }) {
             />
           </TextField>
 
-          
           {/* Category Dropdown */}
           <Select
             isRequired
