@@ -15,14 +15,110 @@ import { ArrowRight, Send } from "lucide-react";
 import Link from "next/link";
 import { FaEye } from "react-icons/fa";
 
-export function LoginForm() {
+export function RegisterForm() {
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const newUser = Object.fromEntries(formData.entries());
+    console.log(newUser);
   };
 
   return (
     <Form className="flex  flex-col gap-4" onSubmit={onSubmit}>
+      <TextField isRequired name="name" type="text">
+        <Label
+          className="
+      mb-2 block
+      text-sm font-semibold
+      text-[#111827] dark:text-gray-200
+    "
+        >
+          Full Name
+        </Label>
+        <Input
+          placeholder="Enter Your Full Name"
+          className=" w-full
+                bg-gray-100
+                     rounded-md
+                    border border-black/5 dark:border-white/10
+                    
+                     dark:bg-[#111827]/70
+                    
+                    px-4
+                    
+                    text-[15px]
+                    text-gray-800 dark:text-gray-100
+                    
+                    placeholder:text-gray-600 dark:placeholder:text-gray-500
+                    
+                    shadow-[0_4px_20px_rgba(15,23,42,0.04)]
+                    dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+                    
+                    backdrop-blur-xl
+                    
+                    transition-all duration-300
+                    
+                    hover:border-[#6D5EF5]/30
+                    hover:shadow-[0_10px_30px_rgba(109,94,245,0.08)]
+                    
+                    focus-within:border-[#6D5EF5]
+                    focus-within:ring-4
+                    focus-within:ring-[#6D5EF5]/10
+                    
+                    dark:hover:border-[#8B5CF6]/40
+                    dark:focus-within:border-[#8B5CF6]
+                    dark:focus-within:ring-[#8B5CF6]/10
+                    "
+        />
+        <FieldError />
+      </TextField>
+      <TextField isRequired name="image" type="text">
+        <Label
+          className="
+      mb-2 block
+      text-sm font-semibold
+      text-[#111827] dark:text-gray-200
+    "
+        >
+          Image URL
+        </Label>
+        <Input
+          placeholder="https://example.com/image.jpg"
+          className=" w-full
+                bg-gray-100
+                     rounded-md
+                    border border-black/5 dark:border-white/10
+                    
+                     dark:bg-[#111827]/70
+                    
+                    px-4
+                    
+                    text-[15px]
+                    text-gray-800 dark:text-gray-100
+                    
+                    placeholder:text-gray-600 dark:placeholder:text-gray-500
+                    
+                    shadow-[0_4px_20px_rgba(15,23,42,0.04)]
+                    dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+                    
+                    backdrop-blur-xl
+                    
+                    transition-all duration-300
+                    
+                    hover:border-[#6D5EF5]/30
+                    hover:shadow-[0_10px_30px_rgba(109,94,245,0.08)]
+                    
+                    focus-within:border-[#6D5EF5]
+                    focus-within:ring-4
+                    focus-within:ring-[#6D5EF5]/10
+                    
+                    dark:hover:border-[#8B5CF6]/40
+                    dark:focus-within:border-[#8B5CF6]
+                    dark:focus-within:ring-[#8B5CF6]/10
+                    "
+        />
+        <FieldError />
+      </TextField>
       <TextField
         isRequired
         name="email"
@@ -84,19 +180,19 @@ export function LoginForm() {
 
       <TextField
         isRequired
-        minLength={8}
+        minLength={6}
         name="password"
         type="password"
         className="relative"
         validate={(value) => {
-          if (value.length < 8) {
-            return "Password must be at least 8 characters";
+          if (value.length < 6) {
+            return "Password must be at least 6 characters";
           }
           if (!/[A-Z]/.test(value)) {
             return "Password must contain at least one uppercase letter";
           }
-          if (!/[0-9]/.test(value)) {
-            return "Password must contain at least one number";
+          if (!/[a-z]/.test(value)) {
+            return "Password must contain at least one lowercase letter";
           }
 
           return null;
@@ -168,10 +264,14 @@ export function LoginForm() {
           <Checkbox.Indicator className="" />
         </Checkbox.Control>
         <Checkbox.Content>
-          <Label>Remember Me</Label>
+          <Label>
+            I agree to the{" "}
+            <span className="text-violet-600 font-medium">
+              Terms of services & Privacy policy
+            </span>
+          </Label>
         </Checkbox.Content>
       </Checkbox>
-      
 
       <div className="flex gap-2">
         <Button
@@ -195,8 +295,7 @@ export function LoginForm() {
                 active:scale-[0.98]
               "
         >
-         
-          Login
+          Create Account
           <ArrowRight className="size-4" />
         </Button>
       </div>
