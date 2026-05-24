@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const IdeaCategoriesSection = async () => {
   const categories = await getIdeaCategories();
-  console.log(categories);
+  
   return (
     <div className="relative overflow-hidden bg-[#F7F5FF] py-28 dark:bg-[#0F0F1A]">
       {/* Background Glow */}

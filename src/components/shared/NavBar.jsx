@@ -9,12 +9,26 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 import NavLinkItem from "@/components/shared/NavLink";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { auth } from "@/lib/auth";
 
-const NavBar = () => {
+import { headers } from "next/headers";
+import DropDownMenu from "./DropDownMenu";
+
+const NavBar = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+
   const publicLinks = [
     { path: "/", pathName: "Home" },
     { path: "/ideas", pathName: "Ideas" },
     { path: "/add-idea", pathName: "Add Idea" },
+  ];
+  const privateLinks = [
+    { path: "/my-profile", pathName: "My Profile" },
+    { path: "/my-ideas", pathName: "My Ideas" },
+    { path: "/my-interactions", pathName: "My Interactions" },
   ];
 
   return (
@@ -137,11 +151,13 @@ const NavBar = () => {
 
         {/* RIGHT */}
         <div className="navbar-end gap-3">
-          
           <ThemeSwitch />
-          <Link href="/login">
-            <Button
-              className="
+          {user ? (
+            <DropDownMenu user={user} privateLinks={privateLinks}/>
+          ) : (
+            <Link href="/login">
+              <Button
+                className="
                 group relative h-11 overflow-hidden
                 rounded-full border-0 px-5
                 bg-[#0F172A]
@@ -151,10 +167,10 @@ const NavBar = () => {
                 hover:scale-[1.02]
                 dark:bg-white dark:text-black
               "
-            >
-              {/* gradient hover */}
-              <div
-                className="
+              >
+                {/* gradient hover */}
+                <div
+                  className="
                   absolute inset-0
                   bg-gradient-to-r
                   from-[#6D5EF5]
@@ -163,16 +179,17 @@ const NavBar = () => {
                   transition-opacity duration-300
                   group-hover:opacity-100
                 "
-              />
+                />
 
-              <div className="relative flex items-center gap-2">
-                <SlLogin size={16} />
-                <span className="text-sm font-semibold tracking-wide">
-                  Login
-                </span>
-              </div>
-            </Button>
-          </Link>
+                <div className="relative flex items-center gap-2">
+                  <SlLogin size={16} />
+                  <span className="text-sm font-semibold tracking-wide">
+                    Login
+                  </span>
+                </div>
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </header>
