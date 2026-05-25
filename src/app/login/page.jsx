@@ -5,6 +5,7 @@ import Logo from "@/assets/logo.png";
 import { FaGithub, FaGoogle, FaMicrosoft } from "react-icons/fa";
 import { FiArrowRight, FiEye, FiLock, FiMail } from "react-icons/fi";
 import { LoginForm } from "@/components/auth/LoginForm";
+import Google from "@/components/shared/Google";
 
 const LogInPage = () => {
   return (
@@ -135,10 +136,7 @@ const LogInPage = () => {
 
               {/* Social Buttons */}
 
-              <button className="w-full h-14 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 font-semibold text-slate-700 dark:text-slate-200 shadow-sm">
-                <FaGoogle className="text-xl" />
-                Google
-              </button>
+             <Google/>
 
               {/* Bottom Note */}
               <div className="mt-10 flex items-start gap-3 text-sm text-slate-500 dark:text-slate-400">

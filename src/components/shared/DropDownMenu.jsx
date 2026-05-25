@@ -4,8 +4,17 @@ import { Avatar, Button } from "@heroui/react";
 import { ChevronDown, LogOut } from "lucide-react";
 
 import NavLinkItem from "./NavLink";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const DropDownMenu = ({ user, privateLinks }) => {
+  const router = useRouter();
+  const handleLogout = async () => {
+    await authClient.signOut();
+    toast.success(`Logout Successfull`);
+    router.refresh();
+  };
   return (
     <div className="dropdown dropdown-end">
       {/* Trigger */}
@@ -188,6 +197,7 @@ const DropDownMenu = ({ user, privateLinks }) => {
 
         {/* Logout */}
         <Button
+          onClick={handleLogout}
           className="
             h-10 w-full
             rounded-xl

@@ -34,6 +34,7 @@ export function LoginForm() {
     if (data?.user) {
       toast.success(`Login Successfull`);
       router.push(redirect || "/");
+      router.refresh();
     } else if (error) {
       toast.error(`${error.message}`);
     }
@@ -171,7 +172,7 @@ export function LoginForm() {
                     "
         />
         <Description className="text-gray-800 dark:text-gray-100">
-          Must be at least 8 characters with 1 uppercase and 1 number
+          Must be at least 6 characters with 1 uppercase and 1 number
         </Description>
         <FieldError />
       </TextField>
