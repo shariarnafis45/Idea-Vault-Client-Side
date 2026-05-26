@@ -1,14 +1,18 @@
 // all ideas
-export const getAllIdeas = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`);
+export const getAllIdeas = async (search = "", category = "") => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas?search=${search}&category=${category}`,
+  );
   const data = await res.json();
   return data;
 };
 
-// idea categories 
+// idea categories
 
 export const getIdeaCategories = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/idea-categories`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/idea-categories`,
+  );
   const data = await res.json();
   return data;
 };

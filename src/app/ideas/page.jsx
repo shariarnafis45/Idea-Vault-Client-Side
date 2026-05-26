@@ -1,13 +1,17 @@
-import { getAllIdeas } from "@/lib/data";
-
+import { getAllIdeas, getIdeaCategories } from "@/lib/data";
 
 import IdeaCard from "@/components/shared/IdeaCard";
 import Image from "next/image";
 import IdesElementImg from "@/assets/idea.png";
+import IdeaFilter from "@/components/filter/IdeaFilter";
 
+const IdeasPage = async ({ searchParams }) => {
+  const sp = await searchParams;
+  const search = sp.search;
+  const category = sp.category;
+  const ideas = await getAllIdeas(search, category);
+  const ideaCategories = await getIdeaCategories();
 
-const IdeasPage = async () => {
-  const ideas = await getAllIdeas();
   return (
     <div
       className="
@@ -27,7 +31,7 @@ const IdeasPage = async () => {
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
-        <div className="mb-10 flex flex-col items-start  gap-10 md:flex-row lg:items-center lg:justify-between">
+        <div className="mb-5 flex flex-col items-start  gap-10 md:flex-row lg:items-center lg:justify-between">
           <div>
             {/* Label */}
             <div className="mb-5 flex items-center gap-2">
@@ -71,11 +75,11 @@ const IdeasPage = async () => {
           </div>
         </div>
 
-        
-       
+        {/* filtering */}
+        <IdeaFilter ideaCategories={ideaCategories} />
 
         {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-15">
           {ideas?.map((idea) => (
             <IdeaCard key={idea._id} idea={idea} />
           ))}
