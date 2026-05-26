@@ -132,3 +132,36 @@
   }
 }
 
+.form-label {
+  @apply mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-200;
+}
+
+.form-input {
+  @apply h-12 rounded-2xl
+  border border-black/5 dark:border-white/10
+  bg-gray-100 dark:bg-[#111827]/70
+  px-4
+  text-sm text-gray-800 dark:text-gray-100
+  placeholder:text-gray-400 dark:placeholder:text-gray-500
+  transition-all duration-300
+  hover:border-violet-400/40
+  focus-within:border-violet-500
+  focus-within:ring-4
+  focus-within:ring-violet-500/10;
+}
+
+.form-textarea {
+  @apply rounded-2xl
+  border border-black/5 dark:border-white/10
+  bg-gray-100 dark:bg-[#111827]/70
+  px-4 py-3
+  text-sm text-gray-800 dark:text-gray-100
+  placeholder:text-gray-400 dark:placeholder:text-gray-500
+  transition-all duration-300
+  hover:border-violet-400/40
+  focus:border-violet-500
+  focus:ring-4
+  focus:ring-violet-500/10
+  focus:outline-none
+  resize-none;
+}

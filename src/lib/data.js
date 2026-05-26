@@ -16,3 +16,12 @@ export const getIdeaCategories = async () => {
   const data = await res.json();
   return data;
 };
+// get user ideas
+
+export const getMyIdeas = async (userId) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${userId}`,
+  );
+  const data = await res.json();
+  return data;
+};

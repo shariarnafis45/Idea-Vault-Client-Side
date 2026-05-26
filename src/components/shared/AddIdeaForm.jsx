@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { FloppyDisk } from "@gravity-ui/icons";
 import {
   Button,
@@ -17,7 +18,7 @@ import {
 } from "@heroui/react";
 import { Send } from "lucide-react";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { use } from "react";
 import toast from "react-hot-toast";
 
 export function AddIdeaForm({ categories }) {
@@ -26,6 +27,11 @@ export function AddIdeaForm({ categories }) {
     const formData = new FormData(e.currentTarget);
     const newIdea = Object.fromEntries(formData.entries());
     newIdea.tags = newIdea.tags.split(",").map((tag) => tag.trim());
+    const { data: session } = await authClient.getSession();
+    const user = session?.user;
+    const userId = user?.id;
+    newIdea.userId = userId;
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-idea`, {
       method: "POST",
       headers: {

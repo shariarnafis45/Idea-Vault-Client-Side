@@ -173,21 +173,9 @@ const DropDownMenu = ({ user, privateLinks }) => {
         <div className="space-y-1">
           {privateLinks.map((link, i) => (
             <NavLinkItem key={i} path={link.path}>
-              <div
-                className="
-                    flex items-center
-                    rounded-xl
-                    px-3 py-2.5
-                    text-[13px] font-medium
-                    text-gray-700
-                    transition-all duration-200
-                    hover:bg-[#7C5CFF]/8
-                    hover:text-[#7C5CFF]
-                    dark:text-gray-200
-                  "
-              >
+              
                 {link.pathName}
-              </div>
+              
             </NavLinkItem>
           ))}
         </div>
