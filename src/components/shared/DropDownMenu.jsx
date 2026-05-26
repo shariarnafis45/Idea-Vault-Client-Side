@@ -10,11 +10,13 @@ import { useRouter } from "next/navigation";
 
 const DropDownMenu = ({ user, privateLinks }) => {
   const router = useRouter();
+
   const handleLogout = async () => {
     await authClient.signOut();
-    toast.success(`Logout Successfull`);
+    toast.success("Logout Successful");
     router.refresh();
   };
+
   return (
     <div className="dropdown dropdown-end">
       {/* Trigger */}
@@ -45,7 +47,6 @@ const DropDownMenu = ({ user, privateLinks }) => {
           "
         >
           <Avatar.Image alt={user?.name} src={user?.image} />
-
           <Avatar.Fallback
             className="
               bg-gradient-to-br
@@ -59,11 +60,13 @@ const DropDownMenu = ({ user, privateLinks }) => {
         </Avatar>
 
         {/* User Info */}
-        <div className="hidden text-left sm:block">
+        <div className="hidden sm:block min-w-0 text-left">
           <h4
             className="
-              max-w-[110px] truncate
-              text-[13px] font-semibold
+              max-w-[120px]
+              truncate
+              text-[13px]
+              font-semibold
               text-[#111827]
               dark:text-white
             "
@@ -76,6 +79,9 @@ const DropDownMenu = ({ user, privateLinks }) => {
               text-[11px]
               text-gray-500
               dark:text-gray-400
+              max-w-[160px]
+              break-all
+              whitespace-normal
             "
           >
             Idea Creator
@@ -100,13 +106,15 @@ const DropDownMenu = ({ user, privateLinks }) => {
         </div>
       </div>
 
-      {/* Dropdown Content */}
+      {/* Dropdown */}
       <ul
         tabIndex={0}
         className="
           menu dropdown-content
-          z-[999]
-          mt-3 w-64
+          z-[9999]
+          mt-3
+          w-72
+          min-w-[280px]
           rounded-2xl
           border border-black/[0.06]
           bg-white/92
@@ -115,6 +123,7 @@ const DropDownMenu = ({ user, privateLinks }) => {
           backdrop-blur-2xl
           dark:border-white/[0.08]
           dark:bg-[#0F172A]/95
+          overflow-visible
         "
       >
         {/* User Section */}
@@ -127,11 +136,11 @@ const DropDownMenu = ({ user, privateLinks }) => {
             p-3
             dark:border-white/[0.05]
             dark:bg-white/[0.03]
+            min-w-0
           "
         >
           <Avatar className="h-11 w-11">
             <Avatar.Image alt={user?.name} src={user?.image} />
-
             <Avatar.Fallback
               className="
                 bg-gradient-to-br
@@ -144,7 +153,7 @@ const DropDownMenu = ({ user, privateLinks }) => {
             </Avatar.Fallback>
           </Avatar>
 
-          <div className="overflow-hidden">
+          <div className="min-w-0 flex-1">
             <h3
               className="
                 truncate
@@ -158,10 +167,10 @@ const DropDownMenu = ({ user, privateLinks }) => {
 
             <p
               className="
-                truncate
                 text-xs
                 text-gray-500
                 dark:text-gray-400
+                break-all
               "
             >
               {user?.email}
@@ -173,9 +182,7 @@ const DropDownMenu = ({ user, privateLinks }) => {
         <div className="space-y-1">
           {privateLinks.map((link, i) => (
             <NavLinkItem key={i} path={link.path}>
-              
-                {link.pathName}
-              
+              {link.pathName}
             </NavLinkItem>
           ))}
         </div>
@@ -190,7 +197,7 @@ const DropDownMenu = ({ user, privateLinks }) => {
             h-10 w-full
             rounded-xl
             border-0
-            bg-red-500/8
+            bg-red-500/10
             text-[13px] font-semibold
             text-red-500
             transition-all duration-300
