@@ -4,6 +4,8 @@ import IdeaCard from "@/components/shared/IdeaCard";
 import Image from "next/image";
 import IdesElementImg from "@/assets/idea.png";
 import IdeaFilter from "@/components/filter/IdeaFilter";
+import { SearchX } from "lucide-react";
+import NoFoundIdea from "@/components/filter/NoFoundIdea";
 
 const IdeasPage = async ({ searchParams }) => {
   const sp = await searchParams;
@@ -79,11 +81,15 @@ const IdeasPage = async ({ searchParams }) => {
         <IdeaFilter ideaCategories={ideaCategories} />
 
         {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-15">
-          {ideas?.map((idea) => (
-            <IdeaCard key={idea._id} idea={idea} />
-          ))}
-        </div>
+        {ideas?.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-15">
+            {ideas?.map((idea) => (
+              <IdeaCard key={idea._id} idea={idea} />
+            ))}
+          </div>
+        ) : (
+          <NoFoundIdea/>
+        )}
       </div>
     </div>
   );
