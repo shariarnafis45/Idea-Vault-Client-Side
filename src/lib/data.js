@@ -25,3 +25,21 @@ export const getMyIdeas = async (userId) => {
   const data = await res.json();
   return data;
 };
+// get single idea
+
+export const getSingleIdea = async (id) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,
+  );
+  const data = await res.json();
+  return data;
+};
+// get idea comments
+
+export const getIdeaComments = async (id) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,
+  );
+  const data = await res.json();
+  return data;
+};
