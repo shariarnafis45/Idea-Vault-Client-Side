@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertDialog, Button } from "@heroui/react";
-import { Trash2, AlertTriangle } from "lucide-react";
+import { Trash2, AlertTriangle, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -102,7 +102,22 @@ const DeleteComment = ({ comment }) => {
               sm:max-w-[430px]
             "
           >
-            <AlertDialog.CloseTrigger />
+            <AlertDialog.CloseTrigger>
+              <div
+                className="
+                    flex p-2 items-center justify-center
+                    rounded-full
+                    border border-black/10 dark:border-white/10
+                    bg-white dark:bg-[#111827]
+                    text-gray-500 dark:text-gray-300
+                    transition-all duration-300
+                    hover:bg-red-500/10
+                    hover:text-red-500
+                  "
+              >
+                <X size={18} />
+              </div>
+            </AlertDialog.CloseTrigger>
 
             {/* Header */}
             <AlertDialog.Header className="flex flex-col items-center pt-8 text-center">

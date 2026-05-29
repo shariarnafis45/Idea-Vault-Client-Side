@@ -35,7 +35,7 @@ const IdeaDetailsPage = async ({ params }) => {
   const comments = await getIdeaComments(id);
 
   return (
-    <section
+    <div
       className="
         relative
         overflow-hidden
@@ -586,7 +586,7 @@ const IdeaDetailsPage = async ({ params }) => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

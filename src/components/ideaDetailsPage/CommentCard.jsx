@@ -5,6 +5,7 @@ import { Clock3, Edit3, Trash2 } from "lucide-react";
 
 import toast from "react-hot-toast";
 import DeleteComment from "./DeleteComment";
+import CommentUpdateModal from "../ui/CommentUpdateModal";
 
 const CommentCard = ({ comment, user }) => {
   const isOwner = comment?.userEmail === user?.email;
@@ -79,33 +80,7 @@ const CommentCard = ({ comment, user }) => {
             {isOwner && (
               <div className="flex items-center gap-3">
                 {/* Edit */}
-                <button
-                  className="
-                    inline-flex
-                    items-center
-                    gap-2
-                    rounded-xl
-                    border
-                    border-black/10
-                    bg-white/70
-                    px-4
-                    py-2
-                    text-sm
-                    font-medium
-                    text-[#0F172A]
-                    transition-all
-                    duration-300
-                    hover:border-violet-300
-                    hover:text-[#7C5CFF]
-                    dark:border-white/10
-                    dark:bg-white/[0.04]
-                    dark:text-white
-                  "
-                >
-                  <Edit3 className="size-4" />
-
-                  <span>Edit</span>
-                </button>
+                <CommentUpdateModal comment={comment}/>
 
                 {/* Delete */}
                 <DeleteComment comment={comment}/>
