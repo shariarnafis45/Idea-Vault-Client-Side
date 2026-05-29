@@ -1,10 +1,16 @@
-"use client";
+
 
 import { Avatar } from "@heroui/react";
 import { Clock3, Edit3, Trash2 } from "lucide-react";
 
+import toast from "react-hot-toast";
+import DeleteComment from "./DeleteComment";
+
 const CommentCard = ({ comment, user }) => {
   const isOwner = comment?.userEmail === user?.email;
+  
+
+  
 
   return (
     <div
@@ -36,10 +42,7 @@ const CommentCard = ({ comment, user }) => {
             dark:ring-[#111827]
           "
         >
-          <Avatar.Image
-            alt={comment?.userName}
-            src={comment?.userPhoto}
-          />
+          <Avatar.Image alt={comment?.userName} src={comment?.userPhoto} />
 
           <Avatar.Fallback
             className="
@@ -68,9 +71,7 @@ const CommentCard = ({ comment, user }) => {
               <div className="mt-1 flex items-center gap-2 text-sm text-[#64748B] dark:text-[#94A3B8]">
                 <Clock3 className="size-4" />
 
-                <span>
-                  {new Date(comment?.createdAt).toLocaleString()}
-                </span>
+                <span>{new Date(comment?.createdAt).toLocaleString()}</span>
               </div>
             </div>
 
@@ -107,31 +108,7 @@ const CommentCard = ({ comment, user }) => {
                 </button>
 
                 {/* Delete */}
-                <button
-                  className="
-                    inline-flex
-                    items-center
-                    gap-2
-                    rounded-xl
-                    border
-                    border-red-200
-                    bg-red-50
-                    px-4
-                    py-2
-                    text-sm
-                    font-medium
-                    text-red-500
-                    transition-all
-                    duration-300
-                    hover:bg-red-100
-                    dark:border-red-500/20
-                    dark:bg-red-500/10
-                  "
-                >
-                  <Trash2 className="size-4" />
-
-                  <span>Delete</span>
-                </button>
+                <DeleteComment comment={comment}/>
               </div>
             )}
           </div>
