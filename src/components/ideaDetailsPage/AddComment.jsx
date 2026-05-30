@@ -17,6 +17,7 @@ const AddComment = ({ user, ideaId }) => {
     }
     const commentData = {
       ideaId: ideaId,
+      userId : user?.id,
       userName: user?.name,
       userEmail: user?.email,
       userPhoto: user?.image,

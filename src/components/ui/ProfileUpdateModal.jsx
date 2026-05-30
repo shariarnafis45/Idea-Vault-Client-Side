@@ -80,7 +80,7 @@ export function ProfileUpdateModal({ user }) {
               <Modal.CloseTrigger>
                 <div
                   className="
-                    flex h-11 w-11 items-center justify-center
+                    flex p-3 items-center justify-center
                     rounded-full
                     border border-black/10 dark:border-white/10
                     bg-white dark:bg-[#111827]

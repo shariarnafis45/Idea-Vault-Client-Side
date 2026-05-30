@@ -4,6 +4,10 @@ import NoIdeaCardForMyIdeaPage from "@/components/shared/NoIdeaCardForMyIdeaPage
 import { auth } from "@/lib/auth";
 import { getIdeaCategories, getMyIdeas } from "@/lib/data";
 import { headers } from "next/headers";
+export const metadata = {
+  title: 'My Ideas | IdeaVault',
+  description: 'Manage, update, and track the progress of your submitted startup ideas on the IdeaVault platform.',
+};
 
 const MyIdeasPage = async () => {
   const session = await auth.api.getSession({

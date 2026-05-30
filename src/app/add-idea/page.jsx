@@ -1,6 +1,10 @@
 import { AddIdeaForm } from "@/components/shared/AddIdeaForm";
 import { getIdeaCategories } from "@/lib/data";
-import Image from "next/image";
+
+export const metadata = {
+  title: 'Submit Your Idea | IdeaVault',
+  description: 'Share your startup vision with the community. Submit your problem statement, solution, and get valuable feedback.',
+};
 
 const AddIdeaPage = async () => {
   const categories = await getIdeaCategories();

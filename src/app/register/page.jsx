@@ -7,6 +7,10 @@ import { FiArrowRight, FiEye, FiLock, FiMail } from "react-icons/fi";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { RegisterForm } from "@/components/auth/RegisterForm";
 import Google from "@/components/shared/Google";
+export const metadata = {
+  title: 'Join IdeaVault | Register',
+  description: 'Create an account on IdeaVault to start sharing your innovative startup ideas and collaborate with others.',
+};
 
 const RegisterPage = () => {
   return (

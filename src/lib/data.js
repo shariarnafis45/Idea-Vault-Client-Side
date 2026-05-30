@@ -28,17 +28,27 @@ export const getMyIdeas = async (userId) => {
 // get single idea
 
 export const getSingleIdea = async (id) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`);
+  const data = await res.json();
+  return data;
+};
+
+
+
+// get idea comments
+
+export const getIdeaComments = async (ideaId) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/idea/${ideaId}`,
   );
   const data = await res.json();
   return data;
 };
-// get idea comments
+// get user comments
 
-export const getIdeaComments = async (id) => {
+export const getUserComments = async (userId) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/user/${userId}`,
   );
   const data = await res.json();
   return data;

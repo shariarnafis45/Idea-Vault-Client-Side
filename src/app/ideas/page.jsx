@@ -4,8 +4,11 @@ import IdeaCard from "@/components/shared/IdeaCard";
 import Image from "next/image";
 import IdesElementImg from "@/assets/idea.png";
 import IdeaFilter from "@/components/filter/IdeaFilter";
-import { SearchX } from "lucide-react";
 import NoFoundIdea from "@/components/filter/NoFoundIdea";
+export const metadata = {
+  title: 'Explore Ideas | IdeaVault',
+  description: 'Browse through a diverse collection of trending and innovative startup ideas across Tech, AI, Health, Education, and more.',
+};
 
 const IdeasPage = async ({ searchParams }) => {
   const sp = await searchParams;

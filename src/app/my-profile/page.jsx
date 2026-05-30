@@ -14,6 +14,10 @@ import {
 
 import { ProfileUpdateModal } from "@/components/ui/ProfileUpdateModal";
 import LogoutButton from "@/components/ui/LogOutButton";
+export const metadata = {
+  title: 'My Profile | IdeaVault',
+  description: 'Update your personal information and manage your IdeaVault account settings.',
+};
 
 const MyProfilePage = async () => {
   const session = await auth.api.getSession({

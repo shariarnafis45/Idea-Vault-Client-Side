@@ -9,48 +9,28 @@ import {
   Sparkles,
   TrendingUp,
 } from "lucide-react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { getAllIdeas, getUserComments } from "@/lib/data";
+import CommentedIdeaCard from "@/components/shared/CommentedIdeaCard";
+import NoUserInterectionCard from "@/components/shared/NoUserInterectionCard";
+export const metadata = {
+  title: 'My Interactions | IdeaVault',
+  description: 'View your comments, feedback, and engagement history with other startup ideas on the platform.',
+};
 
-// demo data
-const commentedIdeas = [
-  {
-    _id: "1",
-    ideaTitle: "AI Climate Tracker",
-    category: "Sustainability",
-    imageURL:
-      "https://images.unsplash.com/photo-1497436072909-f5e4be5584d2",
-    shortDescription:
-      "AI-powered platform to monitor and reduce carbon footprint.",
-    comment:
-      "This idea has huge potential for sustainability startups.",
-    commentedAt: "2 hours ago",
-  },
-  {
-    _id: "2",
-    ideaTitle: "Smart Health Assistant",
-    category: "Healthcare",
-    imageURL:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
-    shortDescription:
-      "AI assistant that provides smart daily healthcare guidance.",
-    comment:
-      "Would love to see wearable device integrations in future versions.",
-    commentedAt: "Yesterday",
-  },
-  {
-    _id: "3",
-    ideaTitle: "Remote Team Hub",
-    category: "Productivity",
-    imageURL:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    shortDescription:
-      "All-in-one collaboration platform for remote teams.",
-    comment:
-      "The dashboard design and productivity workflow sound amazing.",
-    commentedAt: "3 days ago",
-  },
-];
+const MyInteractionsPage = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+  const userId = user?.id;
+  const myComments = await getUserComments(userId);
+  console.log(myComments);
+  
+  const allIdeas = await getAllIdeas();
+  const activityRate = Math.round((myComments.length / allIdeas.length) * 100);
 
-const MyInteractionsPage = () => {
   return (
     <section
       className="
@@ -111,8 +91,8 @@ const MyInteractionsPage = () => {
                 md:text-lg
               "
             >
-              Track all the ideas you've interacted with, commented on,
-              and engaged in across the community.
+              Track all the ideas you've interacted with, commented on, and
+              engaged in across the community.
             </p>
           </div>
 
@@ -149,7 +129,7 @@ const MyInteractionsPage = () => {
               </div>
 
               <h3 className="mt-5 text-3xl font-black text-[#0F172A] dark:text-white">
-                12
+                {myComments.length}
               </h3>
 
               <p className="mt-1 text-sm text-[#64748B] dark:text-[#A1A1B5]">
@@ -188,7 +168,7 @@ const MyInteractionsPage = () => {
               </div>
 
               <h3 className="mt-5 text-3xl font-black text-[#0F172A] dark:text-white">
-                8
+                {myComments.length}
               </h3>
 
               <p className="mt-1 text-sm text-[#64748B] dark:text-[#A1A1B5]">
@@ -227,7 +207,7 @@ const MyInteractionsPage = () => {
               </div>
 
               <h3 className="mt-5 text-3xl font-black text-[#0F172A] dark:text-white">
-                95%
+                {activityRate} %
               </h3>
 
               <p className="mt-1 text-sm text-[#64748B] dark:text-[#A1A1B5]">
@@ -258,206 +238,16 @@ const MyInteractionsPage = () => {
 
           {/* Cards */}
           <div className="space-y-6">
-            {commentedIdeas.map((idea) => (
-              <div
-                key={idea._id}
-                className="
-                  group
-                  overflow-hidden
-                  rounded-[32px]
-                  border
-                  border-black/5
-                  bg-white/70
-                  shadow-[0_15px_50px_rgba(15,23,42,0.05)]
-                  backdrop-blur-2xl
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  dark:border-white/10
-                  dark:bg-white/[0.04]
-                "
-              >
-                <div className="grid gap-0 lg:grid-cols-[320px_1fr]">
-                  {/* Image */}
-                  <div className="relative h-[260px] overflow-hidden lg:h-full">
-                    <Image
-                      src={idea.imageURL}
-                      alt={idea.ideaTitle}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-                    {/* Category */}
-                    <div className="absolute left-5 top-5">
-                      <span
-                        className="
-                          rounded-full
-                          bg-[#7C5CFF]
-                          px-4
-                          py-2
-                          text-xs
-                          font-bold
-                          uppercase
-                          tracking-wide
-                          text-white
-                        "
-                      >
-                        {idea.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 md:p-8">
-                    {/* Top */}
-                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                      <div>
-                        <h3
-                          className="
-                            text-2xl
-                            font-black
-                            tracking-[-0.03em]
-                            text-[#0F172A]
-                            dark:text-white
-                          "
-                        >
-                          {idea.ideaTitle}
-                        </h3>
-
-                        <p
-                          className="
-                            mt-4
-                            max-w-3xl
-                            text-[15px]
-                            leading-8
-                            text-[#64748B]
-                            dark:text-[#A1A1B5]
-                          "
-                        >
-                          {idea.shortDescription}
-                        </p>
-                      </div>
-
-                      <div
-                        className="
-                          inline-flex
-                          items-center
-                          gap-2
-                          rounded-2xl
-                          border
-                          border-black/10
-                          bg-white/70
-                          px-4
-                          py-2.5
-                          text-sm
-                          font-medium
-                          text-[#64748B]
-                          dark:border-white/10
-                          dark:bg-white/[0.04]
-                          dark:text-[#CBD5E1]
-                        "
-                      >
-                        <Clock3 className="size-4" />
-
-                        {idea.commentedAt}
-                      </div>
-                    </div>
-
-                    {/* User Comment */}
-                    <div
-                      className="
-                        mt-8
-                        rounded-[24px]
-                        border
-                        border-violet-200
-                        bg-violet-50/70
-                        p-5
-                        dark:border-violet-500/20
-                        dark:bg-violet-500/10
-                      "
-                    >
-                      <div className="flex items-center gap-2">
-                        <MessageCircle className="size-4 text-[#7C5CFF]" />
-
-                        <span className="text-sm font-semibold text-[#7C5CFF]">
-                          Your Comment
-                        </span>
-                      </div>
-
-                      <p
-                        className="
-                          mt-3
-                          text-[15px]
-                          leading-8
-                          text-[#475569]
-                          dark:text-[#CBD5E1]
-                        "
-                      >
-                        {idea.comment}
-                      </p>
-                    </div>
-
-                    {/* Bottom */}
-                    <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link
-                        href={`/ideas/${idea._id}`}
-                        className="
-                          inline-flex
-                          items-center
-                          gap-2
-                          rounded-2xl
-                          bg-[#7C5CFF]
-                          px-5
-                          py-3
-                          text-sm
-                          font-semibold
-                          text-white
-                          shadow-[0_15px_40px_rgba(124,92,255,0.35)]
-                          transition-all
-                          duration-300
-                          hover:scale-[1.02]
-                          hover:bg-[#6D4FFF]
-                        "
-                      >
-                        <Eye className="size-4" />
-
-                        View Idea
-                      </Link>
-
-                      <button
-                        className="
-                          inline-flex
-                          items-center
-                          gap-2
-                          rounded-2xl
-                          border
-                          border-black/10
-                          bg-white/70
-                          px-5
-                          py-3
-                          text-sm
-                          font-semibold
-                          text-[#0F172A]
-                          transition-all
-                          duration-300
-                          hover:border-violet-300
-                          hover:text-[#7C5CFF]
-                          dark:border-white/10
-                          dark:bg-white/[0.04]
-                          dark:text-white
-                        "
-                      >
-                        <MessageCircle className="size-4" />
-
-                        Edit Comment
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+            {myComments.length === 0 ? (
+              <NoUserInterectionCard />
+            ) : (
+              myComments.map((comment) => (
+                <CommentedIdeaCard
+                  key={comment._id}
+                  comment={comment}
+                />
+              ))
+            )}
           </div>
         </div>
 
@@ -490,8 +280,8 @@ const MyInteractionsPage = () => {
               </h2>
 
               <p className="mt-5 max-w-2xl text-base leading-8 text-violet-100">
-                Explore more projects, share your thoughts, and become
-                part of the innovation community.
+                Explore more projects, share your thoughts, and become part of
+                the innovation community.
               </p>
             </div>
 
@@ -515,7 +305,6 @@ const MyInteractionsPage = () => {
               "
             >
               Explore Ideas
-
               <ArrowRight className="size-4" />
             </Link>
           </div>

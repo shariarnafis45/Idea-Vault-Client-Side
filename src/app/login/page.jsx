@@ -6,6 +6,10 @@ import { FaGithub, FaGoogle, FaMicrosoft } from "react-icons/fa";
 import { FiArrowRight, FiEye, FiLock, FiMail } from "react-icons/fi";
 import { LoginForm } from "@/components/auth/LoginForm";
 import Google from "@/components/shared/Google";
+export const metadata = {
+  title: 'Login to IdeaVault',
+  description: 'Access your IdeaVault account to share ideas, comment, and engage with the startup community.',
+};
 
 const LogInPage = () => {
   return (

@@ -25,6 +25,19 @@ import AddComment from "@/components/ideaDetailsPage/AddComment";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,
+  );
+  const idea = await res.json();
+
+  return {
+    title: `${idea.ideaTitle} | IdeaVault`,
+    description: idea.shortDescription,
+  };
+}
+
 const IdeaDetailsPage = async ({ params }) => {
   const { id } = await params;
   const idea = await getSingleIdea(id);

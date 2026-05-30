@@ -20,10 +20,11 @@ import {
 } from "lucide-react";
 import { IdeaUpdateModal } from "../ui/IdeaUpdateModal";
 import IdeaDelete from "../ui/IdeaDelete";
+import Link from "next/link";
 
 const MyIdeaCard = ({ idea, categories }) => {
   return (
-    <div className="group overflow-hidden rounded-[34px] border border-default-200/70 bg-white/80 p-4 shadow-xl backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-[#111827]/80 md:p-6">
+    <div className="group overflow-hidden rounded-[34px] border border-default-200/70 bg-white/80 p-4 shadow-xl backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-[#111827]/80 md:p-6 mt-10">
       <div className="flex flex-col gap-6 2xl:flex-row">
         {/* IMAGE */}
         <div className="w-full shrink-0 2xl:w-[340px]">
@@ -88,12 +89,12 @@ const MyIdeaCard = ({ idea, categories }) => {
             </div>
 
             {/* ACTION BUTTONS */}
-            <div className="flex items-center gap-4 self-start flex-wrap" >
+            <div className="flex items-center gap-4 self-start flex-wrap">
               {/* EDIT */}
               <IdeaUpdateModal idea={idea} categories={categories} />
 
               {/* DELETE */}
-              <IdeaDelete idea={idea}/>
+              <IdeaDelete idea={idea} />
             </div>
           </div>
 
@@ -222,13 +223,15 @@ const MyIdeaCard = ({ idea, categories }) => {
 
             {/* CTA */}
             <div className="flex flex-wrap gap-3">
-              <Button
-                radius="full"
-                endContent={<ArrowRight size={18} />}
-                className="h-12 bg-gradient-to-r from-violet-600 to-indigo-500 px-7 font-semibold text-white shadow-lg shadow-violet-500/20"
-              >
-                View Details
-              </Button>
+              <Link href={`/ideas/${idea._id}`}>
+                <Button
+                  radius="full"
+                  className="h-12 bg-gradient-to-r from-violet-600 to-indigo-500 px-7 font-semibold text-white shadow-lg shadow-violet-500/20"
+                >
+                  <ArrowRight size={18} />
+                  View Details
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,17 +1,13 @@
-
-
 import { Avatar } from "@heroui/react";
 import { Clock3, Edit3, Trash2 } from "lucide-react";
 
 import toast from "react-hot-toast";
 import DeleteComment from "./DeleteComment";
-import CommentUpdateModal from "../ui/CommentUpdateModal";
+import CommentUpdateModal from "./CommentUpdateModal";
+import { formatDistanceToNow } from "date-fns";
 
 const CommentCard = ({ comment, user }) => {
   const isOwner = comment?.userEmail === user?.email;
-  
-
-  
 
   return (
     <div
@@ -72,7 +68,11 @@ const CommentCard = ({ comment, user }) => {
               <div className="mt-1 flex items-center gap-2 text-sm text-[#64748B] dark:text-[#94A3B8]">
                 <Clock3 className="size-4" />
 
-                <span>{new Date(comment?.createdAt).toLocaleString()}</span>
+                <span>
+                  {formatDistanceToNow(new Date(comment?.createdAt), {
+                    addSuffix: true,
+                  })}
+                </span>
               </div>
             </div>
 
@@ -80,10 +80,10 @@ const CommentCard = ({ comment, user }) => {
             {isOwner && (
               <div className="flex items-center gap-3">
                 {/* Edit */}
-                <CommentUpdateModal comment={comment}/>
+                <CommentUpdateModal comment={comment} />
 
                 {/* Delete */}
-                <DeleteComment comment={comment}/>
+                <DeleteComment comment={comment} />
               </div>
             )}
           </div>

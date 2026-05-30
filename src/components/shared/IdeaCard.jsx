@@ -191,7 +191,7 @@ const IdeaCard = ({ idea }) => {
           </div>
 
           {/* BUTTON */}
-          <Link href={`/ideas/${idea._id}`} className="shrink-0">
+          <Link href={`/ideas/${idea._id}`} className="shrink-0 cursor-pointer">
             <button
               className="
         group/button
