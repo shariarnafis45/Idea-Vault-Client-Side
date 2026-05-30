@@ -14,9 +14,11 @@ import {
 
 import { ProfileUpdateModal } from "@/components/ui/ProfileUpdateModal";
 import LogoutButton from "@/components/ui/LogOutButton";
+import { Avatar } from "@heroui/react";
 export const metadata = {
-  title: 'My Profile | IdeaVault',
-  description: 'Update your personal information and manage your IdeaVault account settings.',
+  title: "My Profile | IdeaVault",
+  description:
+    "Update your personal information and manage your IdeaVault account settings.",
 };
 
 const MyProfilePage = async () => {
@@ -67,41 +69,36 @@ const MyProfilePage = async () => {
             {/* left */}
             <div className="flex flex-col items-start gap-7 lg:flex-row lg:items-center">
               {/* image */}
-              <div className="relative">
-                <div
-                  className="
-                    relative
-                    h-[150px] w-[150px]
-                    overflow-hidden
-                    rounded-full
-                    border-[6px]
-                    border-[#F3F0FF]
-                    dark:border-white/10
-                    shadow-lg
-                  "
-                >
-                  <Image
-                    src={user?.image}
+              <div
+                className="
+      relative
+      h-[150px] w-[150px]
+      rounded-full
+      border-[6px]
+      border-[#F3F0FF]
+      dark:border-white/10
+      shadow-lg
+    "
+              >
+                <Avatar className="h-full w-full rounded-full">
+                  {/* object-cover ta image er class e hobe */}
+                  <Avatar.Image
                     alt={user?.name}
-                    fill
-                    className="object-cover"
+                    src={user?.image}
+                    className="object-cover h-full w-full"
                   />
-                </div>
 
-                {/* badge */}
-                <div
-                  className="
-                    absolute bottom-2 right-0
-                    flex h-14 w-14 items-center justify-center
-                    rounded-full
-                    border-4 border-white dark:border-[#0F172A]
-                    bg-violet-100 dark:bg-violet-500/10
-                    text-violet-600
-                    shadow-lg
-                  "
-                >
-                  <User2 size={22} />
-                </div>
+                  {/* 150px box er jonno text ektu boro (text-4xl) ar center korar jonno flex deya holo */}
+                  <Avatar.Fallback
+                    className="
+          flex h-full w-full items-center justify-center
+          bg-gradient-to-br from-[#7C5CFF] to-[#9F7AEA]
+          text-4xl font-semibold text-white
+        "
+                  >
+                    {user?.name?.charAt(0)}
+                  </Avatar.Fallback>
+                </Avatar>
               </div>
 
               {/* info */}

@@ -39,7 +39,7 @@ const IdeaCategoriesSection = async () => {
           {/* CTA Button */}
           <Link href={"/ideas"} className="">
             <button className="group flex h-[64px] items-center gap-3 rounded-full border border-[#E7DFFF] bg-white px-9 text-[16px] font-semibold text-[#7C5CFF] shadow-[0_4px_20px_rgba(124,92,255,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(124,92,255,0.12)] dark:border-[#2A2A40] dark:bg-[#1C1C2E]">
-              View All Categories
+              View All 
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </Link>

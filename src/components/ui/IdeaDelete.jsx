@@ -16,7 +16,11 @@ const IdeaDelete = ({ idea }) => {
       },
     );
     const data = await res.json();
-    if (data.acknowledged) {
+    console.log(data);
+    if (
+      data.ideaDeleteResult.acknowledged &&
+      data.ideaCommentsDelete.acknowledged
+    ) {
       toast.success(`Your ${idea.ideaTitle} Idea Deleted Successfully`);
       router.refresh();
     } else {
