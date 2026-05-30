@@ -3,7 +3,7 @@ import { Triangle } from "react-loader-spinner";
 
 const loading = () => {
   return (
-    <div className="w-full min-h-[90vh] flex items-center justify-center">
+    <div className="w-full min-h-screen flex items-center justify-center">
       {/* Glow background */}
       <div className="relative flex items-center justify-center">
         {/* Soft glow blob */}
