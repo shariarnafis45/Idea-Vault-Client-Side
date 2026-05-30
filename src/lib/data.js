@@ -28,12 +28,14 @@ export const getMyIdeas = async (userId) => {
 // get single idea
 
 export const getSingleIdea = async (id) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`, {
+    headers: {
+      authorization: "logged in",
+    },
+  });
   const data = await res.json();
   return data;
 };
-
-
 
 // get idea comments
 

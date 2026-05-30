@@ -27,10 +27,9 @@ import { headers } from "next/headers";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,
-  );
-  const idea = await res.json();
+
+  const idea = await getSingleIdea(id);
+  console.log(idea);
 
   return {
     title: `${idea.ideaTitle} | IdeaVault`,
